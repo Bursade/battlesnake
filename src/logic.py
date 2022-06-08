@@ -38,8 +38,8 @@ def choose_move(data: dict) -> str:
     my_body = my_snake["body"]  # A list of coordinate dictionaries like [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]
     my_neck = my_body[1]  # The segment of body right after the head is the 'neck'
     board = data['board']
-    board_height = board['height']
-    board_width = board['width']
+    max_height = board['height'] - 1 # The maximum possible value for the "x" coordinate
+    max_width = board['width'] - 1 # The maximum possible value for the "y" coordinate
 
     # Uncomment the lines below to see what this data looks like in your output!
     print(f"~~~ Turn: {data['turn']}  Game Mode: {data['game']['ruleset']['name']} ~~~")
@@ -112,12 +112,12 @@ def _avoid_the_walls(board_height: int, board_width: int, my_head: dict, possibl
             e.g. ["up", "down", "left", "right"]    
     """
     
-    if my_head["x"] == board_width:  # my head is on the right side of the board
+    if my_head["x"] == max_width:  # my head is on the right side of the board
         if "right" in possible_moves: possible_moves.remove("right")
     elif my_head["x"] == 0:  # my head is on the left side of the board
         if "left" in possible_moves: possible_moves.remove("left") 
     
-    if my_head["y"] == board_height:  # my head is on the top of the board
+    if my_head["y"] == max_height:  # my head is on the top of the board
         if "up" in possible_moves: possible_moves.remove("up")
     elif my_head["y"] == 0:  # my head is on the bottom of the board
         if "down" in possible_moves: possible_moves.remove("down")
