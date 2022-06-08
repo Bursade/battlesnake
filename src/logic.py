@@ -76,8 +76,10 @@ def choose_move(data: Dict) -> str:
         possible_moves)
 
     # TODO: Step 2 - Don't hit yourself.
-    # Use information from `my_body` to avoid moves that would collide
-    # with yourself.
+    possible_moves = _avoid_myself(
+        my_body,
+        my_head,
+        possible_moves)
 
     # TODO: Step 3 - Don't collide with others.
     # Use information from `data` to prevent your Battlesnake from
@@ -88,8 +90,12 @@ def choose_move(data: Dict) -> str:
     # food = data['board']['food']
 
     # Choose a random direction from the remaining possible_moves to
-    # move in, and then return that move
-    move = random.choice(possible_moves)
+    # move in, and then return that move. If there's no possible move
+    # just pick a random direction (you're doomed anyway).
+    if possible_moves:
+        move = random.choice(possible_moves)
+    else:
+        move = random.choice(["up", "down", "left", "right"])
     # TODO: Explore new strategies for picking a move that are better
     # than random
 
@@ -102,7 +108,8 @@ def choose_move(data: Dict) -> str:
 def _avoid_my_neck(
         my_head: Dict,
         my_neck: Dict,
-        possible_moves: List[str]) -> List[str]:
+        possible_moves: List[str]
+) -> List[str]:
     """
     my_head: Dictionary of x/y coordinates for the head of
     my Battlesnake.
@@ -143,7 +150,8 @@ def _avoid_the_walls(
         max_height: int,
         max_width: int,
         my_head: Dict,
-        possible_moves: List[str]) -> List[str]:
+        possible_moves: List[str]
+) -> List[str]:
     """
     board_height: An integer number representing the height of the board.
     This will be the lenght of the "y" axis.
@@ -175,3 +183,46 @@ def _avoid_the_walls(
             possible_moves.remove("down")
 
     return possible_moves
+
+
+def _avoid_myself(
+    my_body: List[Dict],
+    my_head: Dict,
+    possible_moves: List[str]
+) -> List[str]:
+    """
+    my_body: List of dictionaries of x/y coordinates for every segment
+    of a Battlesnake.
+        e.g. [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]
+
+    my_head: Dictionary of x/y coordinates for the head of my Battlesnake.
+            e.g. {"x": 3, "y": 5}
+
+    possible_moves: List of strings. Moves to pick from.
+        e.g. ["up", "down", "left", "right"]
+    """
+    backbone = __backbone(my_body)
+    for vertebra in backbone:
+        if my_head["x"] + 1 == vertebra["x"]:
+            if "right" in possible_moves:
+                possible_moves.remove("right")
+        elif my_head["x"] - 1 == vertebra["x"]:
+            if "left" in possible_moves:
+                possible_moves.remove("left")
+        elif my_head["y"] + 1 == vertebra["y"]:
+            if "up" in possible_moves:
+                possible_moves.remove("up")
+        elif my_head["y"] - 1 == vertebra["y"]:
+            if "down" in possible_moves:
+                possible_moves.remove("down")
+    return possible_moves
+
+
+def __backbone(my_body: List[Dict]) -> List[Dict]:
+    """
+    Helper function that given my Battlesnake body's, chops the head
+    and returns the rest of the body.
+    """
+    backbone = my_body.copy()
+    backbone.pop(0)
+    return backbone
