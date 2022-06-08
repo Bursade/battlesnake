@@ -19,8 +19,8 @@ def get_info() -> dict:
         "apiversion": "1",
         "author": "unknown",
         "color": "#0066ff",
-        "head": "bolt",
-        "tail": "beluga",
+        "head": "beluga",
+        "tail": "bolt",
     }
 
 
