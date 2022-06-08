@@ -56,11 +56,7 @@ def choose_move(data: dict) -> str:
     # Step 0: Don't allow your Battlesnake to move back on it's own neck.
     possible_moves = _avoid_my_neck(my_head, my_neck, possible_moves)
 
-    # TODO: Step 1 - Don't hit walls.
-    # Use information from `data` and `my_head` to not move beyond the game board.
-    # board = data['board']
-    # board_height = ?
-    # board_width = ?
+    # Step 1 - Don't hit walls.
     possible_moves = _avoid_the_walls(board_height, board_width, my_head)
 
     # TODO: Step 2 - Don't hit yourself.
@@ -113,3 +109,5 @@ def _avoid_the_walls(board_height: int, board_width: int, my_head: dict, possibl
         possible_moves.remove("up")
     elif my_head["y"] == 0:  # my head is on the bottom of the board
         possible_moves.remove("down")
+
+    return possible_moves
