@@ -41,7 +41,6 @@ def handle_move():
     """
     data = request.get_json()
 
-    # TODO - look at the logic.py file to see how we decide what move to return!
     move = logic.choose_move(data)
 
     return {"move": move}

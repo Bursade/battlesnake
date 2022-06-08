@@ -2,10 +2,7 @@ import random
 from typing import List, Dict
 
 """
-This file can be a nice home for your Battlesnake's logic and helper functions.
-
-We have started this for you, and included some logic to remove your Battlesnake's 'neck'
-from the list of possible moves!
+Battlesnake's logic and helper functions.
 """
 
 def get_info() -> dict:
@@ -80,6 +77,10 @@ def choose_move(data: dict) -> str:
 
 def _avoid_my_neck(my_head: dict, my_neck: dict, possible_moves: List[str]) -> List[str]:
     """
+    my_head: Dictionary of x/y coordinates for the head of my Battlesnake.
+            e.g. {"x": 3, "y": 5}
+    my_neck: Dictionary of x/y coordinates for the neck of my Battlesnake.
+            e.g. {"x": 3, "y": 4}
     my_body: List of dictionaries of x/y coordinates for every segment of a Battlesnake.
             e.g. [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]
     possible_moves: List of strings. Moves to pick from.
@@ -89,25 +90,36 @@ def _avoid_my_neck(my_head: dict, my_neck: dict, possible_moves: List[str]) -> L
     """
 
     if my_neck["x"] < my_head["x"]:  # my neck is left of my head
-        possible_moves.remove("left")
+        if "left" in possible_moves: possible_moves.remove("left")
     elif my_neck["x"] > my_head["x"]:  # my neck is right of my head
-        possible_moves.remove("right")
+        if "right" in possible_moves: possible_moves.remove("right")
     elif my_neck["y"] < my_head["y"]:  # my neck is below my head
-        possible_moves.remove("down")
+        if "down" in possible_moves: possible_moves.remove("down")
     elif my_neck["y"] > my_head["y"]:  # my neck is above my head
-        possible_moves.remove("up")
+        if "up" in possible_moves: possible_moves.remove("up")
 
     return possible_moves
 
 def _avoid_the_walls(board_height: int, board_width: int, my_head: dict, possible_moves: List[str]) -> List[str]:
+    """
+    board_height: An integer number representing the height of the board. This will be the lenght of the "y" axis.
+            e.g 11
+    board_width: An integer number representing the width of the board. This will be the lenght of the "x" axis.
+            e.g 5         
+    my_head: Dictionary of x/y coordinates for the head of my Battlesnake.
+            e.g. {"x": 3, "y": 5}
+    possible_moves: List of strings. Moves to pick from.
+            e.g. ["up", "down", "left", "right"]    
+    """
+    
     if my_head["x"] == board_width:  # my head is on the right side of the board
-        possible_moves.remove("right")
+        if "right" in possible_moves: possible_moves.remove("right")
     elif my_head["x"] == 0:  # my head is on the left side of the board
-        possible_moves.remove("left") 
+        if "left" in possible_moves: possible_moves.remove("left") 
     
     if my_head["y"] == board_height:  # my head is on the top of the board
-        possible_moves.remove("up")
+        if "up" in possible_moves: possible_moves.remove("up")
     elif my_head["y"] == 0:  # my head is on the bottom of the board
-        possible_moves.remove("down")
+        if "down" in possible_moves: possible_moves.remove("down")
 
     return possible_moves
