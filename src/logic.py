@@ -39,6 +39,10 @@ def choose_move(data: dict) -> str:
     my_snake = data["you"]      # A dictionary describing your snake's position on the board
     my_head = my_snake["head"]  # A dictionary of coordinates like {"x": 0, "y": 0}
     my_body = my_snake["body"]  # A list of coordinate dictionaries like [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]
+    my_neck = my_body[1]  # The segment of body right after the head is the 'neck'
+    board = data['board']
+    board_height = board['height']
+    board_width = board['width']
 
     # Uncomment the lines below to see what this data looks like in your output!
     # print(f"~~~ Turn: {data['turn']}  Game Mode: {data['game']['ruleset']['name']} ~~~")
@@ -50,13 +54,14 @@ def choose_move(data: dict) -> str:
     possible_moves = ["up", "down", "left", "right"]
 
     # Step 0: Don't allow your Battlesnake to move back on it's own neck.
-    possible_moves = _avoid_my_neck(my_body, possible_moves)
+    possible_moves = _avoid_my_neck(my_head, my_neck, possible_moves)
 
     # TODO: Step 1 - Don't hit walls.
     # Use information from `data` and `my_head` to not move beyond the game board.
     # board = data['board']
     # board_height = ?
     # board_width = ?
+    possible_moves = _avoid_the_walls(board_height, board_width, my_head)
 
     # TODO: Step 2 - Don't hit yourself.
     # Use information from `my_body` to avoid moves that would collide with yourself.
@@ -77,7 +82,7 @@ def choose_move(data: dict) -> str:
     return move
 
 
-def _avoid_my_neck(my_body: dict, possible_moves: List[str]) -> List[str]:
+def _avoid_my_neck(my_head: dict, my_neck: dict, possible_moves: List[str]) -> List[str]:
     """
     my_body: List of dictionaries of x/y coordinates for every segment of a Battlesnake.
             e.g. [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]
@@ -86,8 +91,6 @@ def _avoid_my_neck(my_body: dict, possible_moves: List[str]) -> List[str]:
 
     return: The list of remaining possible_moves, with the 'neck' direction removed
     """
-    my_head = my_body[0]  # The first body coordinate is always the head
-    my_neck = my_body[1]  # The segment of body right after the head is the 'neck'
 
     if my_neck["x"] < my_head["x"]:  # my neck is left of my head
         possible_moves.remove("left")
@@ -99,3 +102,14 @@ def _avoid_my_neck(my_body: dict, possible_moves: List[str]) -> List[str]:
         possible_moves.remove("up")
 
     return possible_moves
+
+def _avoid_the_walls(board_height: int, board_width: int, my_head: dict, possible_moves: List[str]) -> List[str]:
+    if my_head["x"] == board_width:  # my head is on the right side of the board
+        possible_moves.remove("right")
+    elif my_head["x"] == 0:  # my head is on the left side of the board
+        possible_moves.remove("lef") 
+    
+    if my_head["y"] == board_height:  # my head is on the top of the board
+        possible_moves.remove("up")
+    elif my_head["y"] == 0:  # my head is on the bottom of the board
+        possible_moves.remove("down")
