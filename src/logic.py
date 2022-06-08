@@ -54,7 +54,7 @@ def choose_move(data: dict) -> str:
     possible_moves = _avoid_my_neck(my_head, my_neck, possible_moves)
 
     # Step 1 - Don't hit walls.
-    possible_moves = _avoid_the_walls(board_height, board_width, my_head, possible_moves)
+    possible_moves = _avoid_the_walls(max_height, max_width, my_head, possible_moves)
 
     # TODO: Step 2 - Don't hit yourself.
     # Use information from `my_body` to avoid moves that would collide with yourself.
@@ -100,7 +100,7 @@ def _avoid_my_neck(my_head: dict, my_neck: dict, possible_moves: List[str]) -> L
 
     return possible_moves
 
-def _avoid_the_walls(board_height: int, board_width: int, my_head: dict, possible_moves: List[str]) -> List[str]:
+def _avoid_the_walls(max_height: int, max_width: int, my_head: dict, possible_moves: List[str]) -> List[str]:
     """
     board_height: An integer number representing the height of the board. This will be the lenght of the "y" axis.
             e.g 11
