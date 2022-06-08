@@ -57,7 +57,7 @@ def choose_move(data: dict) -> str:
     possible_moves = _avoid_my_neck(my_head, my_neck, possible_moves)
 
     # Step 1 - Don't hit walls.
-    possible_moves = _avoid_the_walls(board_height, board_width, my_head)
+    possible_moves = _avoid_the_walls(board_height, board_width, my_head, possible_moves)
 
     # TODO: Step 2 - Don't hit yourself.
     # Use information from `my_body` to avoid moves that would collide with yourself.
