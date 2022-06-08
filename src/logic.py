@@ -103,7 +103,7 @@ def _avoid_the_walls(board_height: int, board_width: int, my_head: dict, possibl
     if my_head["x"] == board_width:  # my head is on the right side of the board
         possible_moves.remove("right")
     elif my_head["x"] == 0:  # my head is on the left side of the board
-        possible_moves.remove("lef") 
+        possible_moves.remove("left") 
     
     if my_head["y"] == board_height:  # my head is on the top of the board
         possible_moves.remove("up")
