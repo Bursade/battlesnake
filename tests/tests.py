@@ -209,5 +209,85 @@ class AvoidTheWallsTest(unittest.TestCase):
         self.assertEqual(expected, result_moves)
 
 
+class AvoidMyselfTest(unittest.TestCase):
+    def test_avoid_myself_right_and_down(self):
+        # Arrange
+        test_head = {"x": 4, "y": 4}
+        test_body  = [{"x": 4, "y": 4}, {"x": 4, "y": 3}, {"x": 5, "y": 3}, {"x": 5, "y": 4}]
+        possible_moves = ["up", "down", "left", "right"]
+        expected = ["up", "left"]
+
+        # Act
+        result_moves = logic._avoid_myself(test_body,test_head, possible_moves)
+
+        # Assert
+        self.assertEqual(len(result_moves), 2)
+        self.assertEqual(expected, result_moves)
+
+
+    def test_avoid_myself_left_and_down(self):
+        # Arrange
+        test_head = {"x": 4, "y": 4}
+        test_body  = [{"x": 4, "y": 4}, {"x": 4, "y": 3}, {"x": 3, "y": 3}, {"x": 3, "y": 4}]
+        possible_moves = ["up", "down", "left", "right"]
+        expected = ["up", "right"]
+
+        # Act
+        result_moves = logic._avoid_myself(test_body,test_head, possible_moves)
+
+        # Assert
+        self.assertEqual(len(result_moves), 2)
+        self.assertEqual(expected, result_moves)
+
+
+    def test_avoid_myself_up_and_left(self):
+        # Arrange
+        test_head = {"x": 4, "y": 4}
+        test_body  = [{"x": 4, "y": 4}, {"x": 3, "y": 4}, {"x": 3, "y": 5}, {"x": 4, "y": 5}]
+        possible_moves = ["up", "down", "left", "right"]
+        expected = ["down", "right"]
+
+        # Act
+        result_moves = logic._avoid_myself(test_body,test_head, possible_moves)
+
+        # Assert
+        self.assertEqual(len(result_moves), 2)
+        self.assertEqual(expected, result_moves)
+
+
+    def test_avoid_myself_down_and_left(self):
+        # Arrange
+        test_head = {"x": 4, "y": 4}
+        test_body  = [{"x": 4, "y": 4}, {"x": 3, "y": 4}, {"x": 3, "y": 3}, {"x": 4, "y": 3}]
+        possible_moves = ["up", "down", "left", "right"]
+        expected = ["up", "right"]
+
+        # Act
+        result_moves = logic._avoid_myself(test_body,test_head, possible_moves)
+
+        # Assert
+        self.assertEqual(len(result_moves), 2)
+        self.assertEqual(expected, result_moves)
+
+
+    def test_avoid_myself_all_around(self):
+        # Arrange
+        test_head = {"x": 4, "y": 4}
+        test_body  = [
+            {"x": 4, "y": 4}, {"x": 3, "y": 4}, {"x": 3, "y": 3},
+            {"x": 4, "y": 3}, {"x": 5, "y": 3}, {"x": 5, "y": 4},
+            {"x": 5, "y": 5}, {"x": 4, "y": 5}
+            ]
+        possible_moves = ["up", "down", "left", "right"]
+        expected = []
+
+        # Act
+        result_moves = logic._avoid_myself(test_body,test_head, possible_moves)
+
+        # Assert
+        self.assertEqual(len(result_moves), 0)
+        self.assertEqual(expected, result_moves)
+
+
 if __name__ == "__main__":
     unittest.main()
