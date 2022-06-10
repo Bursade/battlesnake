@@ -26,10 +26,10 @@ Locate the `get_info` function inside [logic.py](logic.py#L11). You should see a
 ```python
 return {
     "apiversion": "1",
-    "author": "",
-    "color": "#888888",
-    "head": "default",
-    "tail": "default",
+    "author": "unknown",
+    "color": "#0066ff",
+    "head": "beluga",
+    "tail": "bolt",
 }
 ```
 
