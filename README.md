@@ -1,13 +1,12 @@
 # Getting started with [Battlesnake](http://play.battlesnake.com?utm_source=github&utm_medium=readme&utm_campaign=python_starter&utm_content=homepage) and Python
 
-![Battlesnake Logo](https://media.battlesnake.com/social/StarterSnakeGitHubRepos_Python.png)
-
-This is a basic implementation of the [Battlesnake API](https://docs.battlesnake.com/references/api) in Python. It's a great starting point for anyone wanting to program their first Battlesnake using Python, and comes ready to deploy with [Replit](https://repl.it) and [Heroku](https://heroku.com), or you can use any other cloud provider you'd like.
+This is a basic implementation of the [Battlesnake API](https://docs.battlesnake.com/references/api) in Python. It's a great starting point for anyone wanting to program their first Battlesnake using Python, and comes ready to deploy with [Heroku](https://heroku.com), or you can use any other cloud provider you'd like.
 
 ## Technologies Used
 
 * [Python3](https://www.python.org/)
 * [Flask](https://flask.palletsprojects.com/)
+* [Go](https://go.dev/) (Optional, used for the rules server)
 
 
 ## Quickstart
@@ -59,7 +58,7 @@ python src/main.py
 ## Running Tests
 
 This Starter Project comes with a very simple test suite for you to expand! Located in [src/tests.py](src/tests.py) you can run them using the following command:
-```python src/tests.py -v```
+```python tests/tests.py -v```
 
 ---
 
@@ -90,8 +89,3 @@ You can also join the Battlesnake Developer Community on [Discord](https://play.
 Check out live Battlesnake events on [Twitch](https://www.twitch.tv/battlesnakeofficial) and see what is happening when on the [Calendar.](https://play.battlesnake.com/calendar?utm_source=github&utm_medium=readme&utm_campaign=python_starter&utm_content=calendar)
 
 Want to contribute to Battlesnake? We have a number of open-source codebases and would love for you to get involved! Check out our page on [Contributing.](https://docs.battlesnake.com/guides/contributing)
-
-
-## Feedback
-
-**Do you have an issue or suggestions for this repository?** Head over to our [Feedback Repository](https://play.battlesnake.com/feedback?utm_source=github&utm_medium=readme&utm_campaign=python_starter&utm_content=feedback) today and let us know!
