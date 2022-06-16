@@ -45,12 +45,13 @@ def choose_move(data: Dict) -> str:
     # A dictionary of coordinates like {"x": 0, "y": 0}
     my_head = my_snake["head"]
     # A list of coordinate dictionaries like
-    # # [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]
+    # [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]
     my_body = my_snake["body"]
     my_neck = my_body[1]
     board = data['board']
     max_height = board['height'] - 1
     max_width = board['width'] - 1
+    snakes = board['snakes'] 
 
     # Comment the lines below before playing online.
     print(f"~~~ Turn: {data['turn']}  Game Mode: \
@@ -84,6 +85,9 @@ def choose_move(data: Dict) -> str:
     # TODO: Step 3 - Don't collide with others.
     # Use information from `data` to prevent your Battlesnake from
     # colliding with others.
+    possible_moves =  _avoid_others(
+        my_body
+    )
 
     # TODO: Step 4 - Find food.
     # Use information in `data` to seek out and find food.
@@ -216,6 +220,10 @@ def _avoid_myself(
             if "down" in possible_moves:
                 possible_moves.remove("down")
     return possible_moves
+
+
+def _avoid_others(my_body: List[Dict]):
+    pass
 
 
 def __backbone(my_body: List[Dict]) -> List[Dict]:

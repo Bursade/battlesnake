@@ -1,0 +1,142 @@
+{
+    "game":
+    {
+        "id": "2c82101a-56f1-411c-b077-c40fee931671",
+        "ruleset": {
+            "name": "solo",
+            "version": "cli",
+            "settings":
+            {
+                "foodSpawnChance": 15,
+                "minimumFood": 1,
+                "hazardDamagePerTurn": 14,
+                "hazardMap": "",
+                "hazardMapAuthor": "",
+                "royale":
+                {
+                    "shrinkEveryNTurns": 25
+                },
+                "squad": 
+                {
+                    "allowBodyCollisions": False, "sharedElimination": False, "sharedHealth": False, "sharedLength": False
+                }
+            }
+        }, "map": "standard", "timeout": 1000, "source": ""
+    },
+    "turn": 87,
+    "board":
+    {
+        "height": 9, 
+        "width": 9, 
+        "snakes": 
+        [
+            {
+                "id": "e28a01db-7ed6-49f7-a940-47d0d43bdbe5",
+                "name": "MyBattlesnake",
+                "latency": "0",
+                "health": 66,
+                "body":
+                [
+                    {
+                        "x": 1, "y": 8
+                    },
+                    {
+                        "x": 2, "y": 8
+                    },
+                    {
+                        "x": 3, "y": 8
+                    },
+                    {
+                        "x": 3, "y": 7
+                    },
+                    {
+                        "x": 3, "y": 6
+                    },
+                    {
+                        "x": 4, "y": 6
+                    }
+                ],
+                "head": 
+                {
+                    "x": 1, "y": 8
+                },
+                "length": 6,
+                "shout": "",
+                "squad": "",
+                "customizations":
+                {
+                    "color": "#0066ff", "head": "beluga", "tail": "bolt"
+                }
+            }
+        ],
+        "food":
+        [
+            {
+                "x": 6, "y": 2
+            },
+            {
+                "x": 2, "y": 2
+            },
+            {
+                "x": 7, "y": 8
+            },
+            {
+                "x": 3, "y": 4
+            },
+            {
+                "x": 6, "y": 3
+            },
+            {
+                "x": 1, "y": 0
+            },
+            {
+                "x": 8, "y": 2
+            },
+            {
+                "x": 5, "y": 4
+            }
+        ],
+        "hazards": []
+    }, 
+    "you":
+    {
+        "id": "e28a01db-7ed6-49f7-a940-47d0d43bdbe5",
+        "name": "MyBattlesnake",
+        "latency": "0",
+        "health": 66,
+        "body":
+        [
+            {
+                "x": 1, "y": 8
+            },
+            {
+                "x": 2, "y": 8
+            },
+            {
+                "x": 3, "y": 8
+            },
+            {
+                "x": 3, "y": 7
+            },
+            {
+                "x": 3, "y": 6
+            },
+            {
+                "x": 4, "y": 6
+            }
+        ],
+        "head": 
+        {
+            "x": 1, "y": 8
+        },
+        "length": 6,
+        "shout": "",
+        "squad": "",
+        "customizations":
+        {
+            "color": "#0066ff",
+            "head": "beluga",
+            "tail": "bolt"
+        }
+    }
+}
